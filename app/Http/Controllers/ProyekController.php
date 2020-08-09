@@ -9,51 +9,50 @@ class ProyekController extends Controller
     //
     public function index()
     {
-        $tanya = DB::table('pertanyaan')->get();
-        //dd($pertanyaan);
-        return view('pertanyaan.index', compact('tanya'));
+        //$project = DB::table('project')->get();
+
+        return view('layouts.index', compact('project'));
     }
 
     //
     public function create()
     {
-        return view('pertanyaan.add');
+        return view('proyek.add');
     }
 
     //
     public function store(Request $request)
     {
         $request->validate([
-            'judul' => 'required|max:255|', //unique:
-            'isi' => 'required',
+            'nama' => 'required|max:255|', //unique:
+            'desk' => 'required',
         ]);
 
-        $query = DB::table('pertanyaan')->insert([
-            "judul" => $request["judul"],
-            "isi" => $request["isi"],
-            "profil_id" => 1,
-            "jawaban_tepat_id" => 1,
-            "created_at" => date('Y-m-d H:i:s'),
-            "updated_at" => date('Y-m-d H:i:s')
+        $query = DB::table('proyek')->insert([
+            "nama_proyek" => $request["judul"],
+            "deskripsi_proyek" => $request["isi"],
+            "tanggal_mulai_proyek" => $request["tgl_mulai"],
+            "tanggal_deadline_proyek" => $request["tgl_deadline"],
+            "status_proyek" => $request["status"]
         ]);
 
-        return redirect('/pertanyaan')->with('success', 'Data Berhasil ditambah');
+        return redirect('/proyek')->with('success', 'Data Berhasil ditambah');
     }
 
     //
     public function show($id)
     {
-        $tanya = DB::table('pertanyaan')->where('id', $id)->first();
+        $proyek = DB::table('proyek')->where('id_proyek', $id)->first();
 
-        return view('pertanyaan.detail', compact('tanya'));
+        return view('proyek.detail', compact('proyek'));
     }
 
     //
     public function edit($id)
     {
-        $tanya = DB::table('pertanyaan')->where('id', $id)->first();
+        $proyek = DB::table('proyek')->where('id_proyek', $id)->first();
 
-        return view('pertanyaan.edit', compact('tanya'));
+        return view('proyek.edit', compact('proyek'));
     }
 
     //
@@ -64,23 +63,22 @@ class ProyekController extends Controller
             'isi' => 'required',
         ]);
 
-        $query = DB::table('pertanyaan')->where('id', $id)->update([
-            "judul" => $request["judul"],
-            "isi" => $request["isi"],
-            "profil_id" => 1,
-            "jawaban_tepat_id" => 1,
-            "created_at" => date('Y-m-d H:i:s'),
-            "updated_at" => date('Y-m-d H:i:s')
+        $query = DB::table('proyek')->where('id_proyek', $id)->update([
+            "nama_proyek" => $request["judul"],
+            "deskripsi_proyek" => $request["isi"],
+            "tanggal_mulai_proyek" => $request["tgl_mulai"],
+            "tanggal_deadline_proyek" => $request["tgl_deadline"],
+            "status_proyek" => $request["status"]
         ]);
 
-        return redirect('/pertanyaan')->with('success', 'Data Berhasil diupdate');
+        return redirect('/proyek')->with('success', 'Data Berhasil diupdate');
     }
 
     //
     public function destroy($id)
     {
-        $query = DB::table('pertanyaan')->where('id', $id)->delete();
+        $query = DB::table('proyek')->where('id_proyek', $id)->delete();
 
-        return redirect('/pertanyaan')->with('success', 'Data Berhasil di hapus');
+        return redirect('/proyek')->with('success', 'Data Berhasil di hapus');
     }
 }

@@ -27,7 +27,7 @@ Route::delete('/items/{id}', 'ItemController@destroy'); // menghapus data dengan
 Route::get('/proyek', 'ProyekController@index'); // menampilkan semua
 Route::get('/proyek/create', 'ProyekController@create'); // menampilkan halaman form
 Route::post('/proyek', 'ProyekController@store'); // menyimpan data
-Route::get('/proyek/create', 'ProyekController@createstaff'); // menampilkan halaman form staff
+Route::get('/proyek/daftarkan-staff', 'ProyekController@createstaff'); // menampilkan halaman form staff
 Route::post('/proyek/{id}/daftarkan-staff', 'ProyekController@storestaff'); // menyimpan data staff
 Route::get('/proyek/{id}', 'ProyekController@show'); // menampilkan detail item dengan id
 Route::get('/proyek/{id}/edit', 'ProyekController@edit'); // menampilkan form untuk edit item

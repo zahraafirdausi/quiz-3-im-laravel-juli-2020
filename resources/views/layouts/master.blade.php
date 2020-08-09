@@ -18,6 +18,8 @@
   <!-- Custom styles for this template-->
   <link href="{{asset('sbadmin2/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    @stack('datatable')
+
 </head>
 
 <body id="page-top">
@@ -105,6 +107,10 @@
 
   <script src="{{asset('sbadmin2/js/swal.min.j')}}s"></script>
 
+    @stack('datatable2')
+
 </body>
 
 </html>
+
+
